@@ -108,7 +108,7 @@ public abstract class ParsingSystem {
    */
   public ParsingSystem(TreebankLanguagePack tlp, List<String> labels, boolean verbose) {
     this.tlp = tlp;
-    this.labels = new ArrayList<>(labels);
+    this.labels = new ArrayList<String>(labels);
 
     makeTransitions();
     

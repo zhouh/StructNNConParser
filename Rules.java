@@ -1,7 +1,6 @@
-﻿package nncon;
+package nncon;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -12,7 +11,7 @@ import java.util.List;
  * */
 public class Rules {
 
-	public List<String> m_dic;	//the dictionary here is a simple dic TODO be more functional 
+	public List<String> m_dic;	//the dictionary here is a simple dic TODO be more functional
 	final int UNARY_MOVES=3;
 	
 	public Rules(List<String> dic){

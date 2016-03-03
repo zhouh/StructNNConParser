@@ -347,7 +347,6 @@ public class FeatureClassPtrs extends Vector<FeatureClass> {
 		long id_number = -1; 
 		id_number = fcp.prune_and_renumber(5, os);
 //
-		int count = 0;
 //		
 //		try {
 ////			fcp.load_features("./testout/features");

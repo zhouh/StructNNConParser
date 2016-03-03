@@ -199,8 +199,8 @@ public class Classifier {
       for (Example ex : examples) {
     	  
         List<Integer> feature = ex.getFeature();
-        List<Integer> actLabel = ex.getactLabel();
-        List<Integer> labelLabel = ex.getlabelLabel();
+        List<Integer> actLabel = ex.getactTypeLabel();
+        List<Integer> labelLabel = ex.getSyntaxTypeLabel();
 
         double[] scores = new double[numLabels];
         double[] labelScores = new double[numLabelLabels];

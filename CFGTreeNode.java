@@ -83,5 +83,13 @@ public class CFGTreeNode
 	      this.word=word;
 	      this.index=index;
 	}
+
+	public String getHead(CFGTree tree){
+		CFGTreeNode node = tree.getNode(token);
+
+		if(node.is_constituent)
+			throw new RuntimeException("could not get head on a constituent node");
+		return node.word;
+	}
 	
 }

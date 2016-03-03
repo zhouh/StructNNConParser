@@ -99,7 +99,6 @@ public class CFGTree{
 	 * TODO:// set the input bracket tree format much more free 
 	 *         instead of keeping a space between every tag or 
 	 *         ConstituentLabel or bracket 
-	 * @param String tokens split by space from the CTB sentence
 	 * @return the node id just read by the function
 	 * 
 	 * */
@@ -274,7 +273,7 @@ public class CFGTree{
 	private int newNode() {
 		CFGTreeNode newTree=new CFGTreeNode();
 		nodes.add(newTree);	
-		return nodes.size()-1;  //返回刚刚新建的node的index
+		return nodes.size()-1;
 	}
 	
 	/**
@@ -377,5 +376,47 @@ public class CFGTree{
 			if(!node.is_constituent)
 				retval.add(node);
 		return retval;
+	}
+
+	public int getRoot() {
+		return root;
+	}
+
+	public CFGTreeNode getLeftChild(CFGTreeNode node){
+		if (!node.is_constituent)
+			throw new RuntimeException("Can not get the child, because the paraent is not a constituent node");
+
+		return nodes.get(node.left_child);
+	}
+
+	public CFGTreeNode getRightChild(CFGTreeNode node){
+		if (!node.is_constituent)
+			throw new RuntimeException("Can not get the child, because the parent is not a constituent node!");
+		if (node.single_child)
+			throw new RuntimeException("Can not get right child, because the parent is single child!");
+		return nodes.get(node.right_child);
+	}
+
+	public CFGTreeNode getNode(int nodeIndex){
+		return nodes.get(nodeIndex);
+	}
+
+	/**
+	 * get tokens from a String line
+	 *
+	 * @param line the line of input corpus
+	 * @return the list of string split by space in the line
+	 * */
+	public static List<String> getTokens(String line) {
+
+		List<String> rtn=new ArrayList<String>();    //返回值
+		String[] str=line.split("\\s{1,}");
+
+		for(int i=0;i<str.length;i++)  {
+			if(str[i].equals(" ")||str[i].equals("　")) continue;
+			rtn.add(str[i]);
+		}
+
+		return rtn;
 	}
 }

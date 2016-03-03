@@ -1,4 +1,4 @@
-﻿package nncon;
+package nncon;
 
 
 import java.util.Map;

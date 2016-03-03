@@ -21,11 +21,11 @@ class Example {
     return feature;
   }
 
-  public List<Integer> getactLabel() {
+  public List<Integer> getactTypeLabel() {
     return actLabel;
   }
   
-  public List<Integer> getlabelLabel() {
+  public List<Integer> getSyntaxTypeLabel() {
 	    return labelLabel;
   }
 
