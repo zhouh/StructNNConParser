@@ -10,6 +10,7 @@ import java.util.Set;
 
 import edu.berkeley.nlp.syntax.Tree;
 import edu.berkeley.nlp.syntax.Trees;
+import reranker.EvalbResult;
 
 /**
  * Evaluates precision and recall for English Penn Treebank parse trees. NOTE:
@@ -121,6 +122,39 @@ public class EnglishPennTreebankParseEvaluator<L> {
 			double f1 = displayPRF(str + " [Current] ", correctSet.size(),
 					guessedSet.size(), goldSet.size(), currentExact, 1, pw);
 			return f1;
+
+		}
+
+		/*
+		 * evaluates precision and recall by calling makeObjects() to make a set
+		 * of structures for guess Tree and gold Tree, and compares them with
+		 * each other.
+		 * And return the gold guessed and correct label quantity.
+		 */
+		public EvalbResult evaluateAndReturnResult(Tree<L> guess, Tree<L> gold, PrintWriter pw) {
+			Set<Object> guessedSet = makeObjects(guess);
+			Set<Object> goldSet = makeObjects(gold);
+			Set<Object> correctSet = new HashSet<Object>();
+			correctSet.addAll(goldSet);
+			correctSet.retainAll(guessedSet);
+
+			correctEvents += correctSet.size();
+			guessedEvents += guessedSet.size();
+			goldEvents += goldSet.size();
+
+			int currentExact = 0;
+			if (correctSet.size() == guessedSet.size()
+					&& correctSet.size() == goldSet.size()) {
+				exact++;
+				currentExact = 1;
+			}
+			total++;
+
+			// guess.pennPrint(pw);
+			// gold.pennPrint(pw);
+			double f1 = displayPRF(str + " [Current] ", correctSet.size(),
+					guessedSet.size(), goldSet.size(), currentExact, 1, pw);
+			return new EvalbResult(f1, correctSet.size(), goldSet.size(),guessedSet.size() );
 
 		}
 		
